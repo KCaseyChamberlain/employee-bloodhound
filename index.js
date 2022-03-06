@@ -27,6 +27,10 @@ function starterQuestions() {
                     addEmployeeQuestions()
                     break;
 
+                case 'Add a role':
+                    addRoleQuestions()
+                    break;
+
                 default:
                     console.log("Selection invalid!")
             }
@@ -39,6 +43,15 @@ function addEmployeeQuestions() {
         .then(function (answers) {
             var employee = new dataModel.Employee(answers.emFirstName, answers.emLastName, answers.emRoleID, answers.emManagerID)
             dataManager.addEmployee(employee)
+        })
+}
+
+function addRoleQuestions() {
+    inquirer
+        .prompt(questions.roleQuestions)
+        .then(function (answers) {
+            var role = new dataModel.Role(answers.roleName, answers.roleSalery, answers.roleDepID)
+            dataManager.addRole(role)
         })
 }
 

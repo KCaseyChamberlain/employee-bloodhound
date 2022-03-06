@@ -11,7 +11,9 @@ CREATE TABLE employee (
 );
 
 CREATE TABLE role (
+ id INTEGER AUTO_INCREMENT PRIMARY KEY,
  role_name VARCHAR(30) NOT NULL,
  salery DECIMAL NOT NULL,
  department_id INTEGER NOT NULL
+
 );

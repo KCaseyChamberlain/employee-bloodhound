@@ -63,10 +63,31 @@ function addEmployee(employee) {
     });
 }
 
+function addRole(role) {
+    const sql = `INSERT INTO role (role_name, salery, department_id) VALUES ('${role.title}', '${role.roleSalery}' , ${role.roleDep})`;
+    const lookUp = `SELECT * FROM role WHERE id = LAST_INSERT_ID()`
+    db.query(sql, (err, rows) => {
+        if (err) {
+            console.log("error occured!", err)
+            return;
+        }
+        db.query(lookUp, (err, rows) => {
+
+            if (err) {
+                console.log("error occured!", err)
+                return;
+            }
+            console.log("Role has been added!")
+            console.table(rows)
+        });
+    });
+}
+
 
 
 module.exports = {
     selectAllEmployees,
     selectAllRoles,
-    addEmployee
+    addEmployee,
+    addRole
 }
