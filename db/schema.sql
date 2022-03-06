@@ -1,0 +1,11 @@
+-- DROP TABLE IF EXISTS department;
+-- DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS employee;
+
+CREATE TABLE employee (
+  id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  role_id INTEGER NOT NULL,
+  manager_id INTEGER NOT NULL
+);
