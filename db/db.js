@@ -11,6 +11,18 @@ function selectAllEmployees() {
     });
 }
 
+function selectAllRoles() {
+    const sql = `SELECT * FROM role`;
+    db.query(sql, (err, rows) => {
+        if (err) {
+            console.log("error occured!", err)
+            return;
+        }
+        console.table(rows)
+    });
+}
+
+
 function updateEmployee(id, roleID) {
     const sql = `UPDATE employee SET role_id = ${roleID} WHERE id = ${id}`;
     const lookUp = `SELECT * FROM employee WHERE id = LAST_INSERT_ID()`
@@ -55,5 +67,6 @@ function addEmployee(employee) {
 
 module.exports = {
     selectAllEmployees,
+    selectAllRoles,
     addEmployee
 }

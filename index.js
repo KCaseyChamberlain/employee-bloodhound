@@ -14,17 +14,21 @@ function starterQuestions() {
     inquirer
         .prompt(questions.starterQuestion)
         .then(function (answers) {
-            switch(answers.starterQ){
-                case 'View all employees': 
+            switch (answers.starterQ) {
+                case 'View all employees':
                     dataManager.selectAllEmployees();
-                break;
-                
-                case  'Add an employee':
-                    addEmployeeQuestions()
-                break;
+                    break;
 
-                default: 
-                console.log("Selection invalid!")
+                case 'View all roles':
+                    dataManager.selectAllRoles();
+                    break;
+
+                case 'Add an employee':
+                    addEmployeeQuestions()
+                    break;
+
+                default:
+                    console.log("Selection invalid!")
             }
         })
 }
