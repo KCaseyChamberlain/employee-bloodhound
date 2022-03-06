@@ -12,3 +12,9 @@ VALUES
 ("Artist", 48000, 02),
 ("Dancer", 12000, 02),
 ("Boxer", 80000, 03);
+
+INSERT INTO department (department_name)
+VALUES
+("Transportation"),
+("Fine Arts"),
+("Blue Collar");

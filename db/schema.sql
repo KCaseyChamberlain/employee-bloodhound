@@ -15,5 +15,9 @@ CREATE TABLE role (
  role_name VARCHAR(30) NOT NULL,
  salery DECIMAL NOT NULL,
  department_id INTEGER NOT NULL
+);
 
+CREATE TABLE department (
+ id INTEGER AUTO_INCREMENT PRIMARY KEY,
+ department_name VARCHAR(30) NOT NULL
 );

@@ -22,6 +22,17 @@ function selectAllRoles() {
     });
 }
 
+function selectAllDepartments() {
+    const sql = `SELECT * FROM department`;
+    db.query(sql, (err, rows) => {
+        if (err) {
+            console.log("error occured!", err)
+            return;
+        }
+        console.table(rows)
+    });
+}
+
 
 function updateEmployee(id, roleID) {
     const sql = `UPDATE employee SET role_id = ${roleID} WHERE id = ${id}`;
@@ -88,6 +99,7 @@ function addRole(role) {
 module.exports = {
     selectAllEmployees,
     selectAllRoles,
+    selectAllDepartments,
     addEmployee,
     addRole
 }

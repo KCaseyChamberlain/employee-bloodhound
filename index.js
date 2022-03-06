@@ -23,6 +23,10 @@ function starterQuestions() {
                     dataManager.selectAllRoles();
                     break;
 
+                case 'View all departments':
+                    dataManager.selectAllDepartments();
+                    break;
+
                 case 'Add an employee':
                     addEmployeeQuestions()
                     break;
