@@ -94,6 +94,25 @@ function addRole(role) {
     });
 }
 
+function addDepartment(department) {
+    const sql = `INSERT INTO department (department_name) VALUES ('${department.depName}')`;
+    const lookUp = `SELECT * FROM department WHERE id = LAST_INSERT_ID()`
+    db.query(sql, (err, rows) => {
+        if (err) {
+            console.log("error occured!", err)
+            return;
+        }
+        db.query(lookUp, (err, rows) => {
+
+            if (err) {
+                console.log("error occured!", err)
+                return;
+            }
+            console.log("Department has been added!")
+            console.table(rows)
+        });
+    });
+}
 
 
 module.exports = {
@@ -101,5 +120,6 @@ module.exports = {
     selectAllRoles,
     selectAllDepartments,
     addEmployee,
-    addRole
+    addRole,
+    addDepartment
 }

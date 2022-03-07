@@ -35,6 +35,10 @@ function starterQuestions() {
                     addRoleQuestions()
                     break;
 
+                case 'Add a department':
+                    addDepartmentQuestions()
+                    break;
+
                 default:
                     console.log("Selection invalid!")
             }
@@ -56,6 +60,15 @@ function addRoleQuestions() {
         .then(function (answers) {
             var role = new dataModel.Role(answers.roleName, answers.roleSalery, answers.roleDepID)
             dataManager.addRole(role)
+        })
+}
+
+function addDepartmentQuestions() {
+    inquirer
+        .prompt(questions.departmentQuestions)
+        .then(function (answers) {
+            var department = new dataModel.Department(answers.depName)
+            dataManager.addDepartment(department)
         })
 }
 
