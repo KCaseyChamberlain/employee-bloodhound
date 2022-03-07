@@ -1,12 +1,21 @@
 const db = require('./connection.js');
 
 function selectAllEmployees() {
-    const sql = `SELECT * FROM employee`;
+    const sql = `
+    SELECT employee.employee_id, employee.first_name, employee.last_name, role.role_name, role.salery, department.department_name, employee.manager_id 
+    FROM employee
+    INNER JOIN role 
+    ON employee.role_id = role.id
+    INNER JOIN department
+    ON role.department_id = department.id;
+`;
+
     db.query(sql, (err, rows) => {
         if (err) {
             console.log("error occured!", err)
             return;
         }
+        // console.clear()
         console.table(rows)
     });
 }

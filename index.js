@@ -3,7 +3,8 @@ const db = require('./db/connection.js');
 const questions = require('./lib/questions.js');
 const dataManager = require("./db/db.js")
 const dataModel = require("./lib/models.js")
-
+const readLine = require('readline');
+const { rawListeners } = require('process');
 
 db.connect(err => {
     if (err) throw err;
@@ -42,6 +43,17 @@ function starterQuestions() {
                 default:
                     console.log("Selection invalid!")
             }
+            readLine.emitKeypressEvents(process.stdin)
+            process.stdin.setRawMode(true)
+            process.stdin.resume()
+            process.stdin.once('keypress', (str, key) => {
+                if (key.ctrl && key.name === 'c') {
+                    process.exit();
+                }
+                process.stdin.setRawMode(false)
+                console.clear()
+                starterQuestions()
+            })
         })
 }
 
@@ -72,5 +84,8 @@ function addDepartmentQuestions() {
         })
 }
 
+
+
 // starts application
 starterQuestions()
+

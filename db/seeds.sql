@@ -1,17 +1,17 @@
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES 
-('James', 'Rickling' , 102, 2),
-('Virginia', 'Woolf', 103, 1),
-('Charles', 'LeRoi', 106, 3),
-('Montague', 'Summers', 109, 1),
-('Ducky', 'Wack', 108, 5);
+('James', 'Rickling' , 1, 2),
+('Virginia', 'Woolf', 3, 1),
+('Charles', 'LeRoi', 2, 3),
+('Montague', 'Summers', 1, 1),
+('Ducky', 'Wack', 8, 5);
 
 INSERT INTO role (role_name, salery, department_id)
 VALUES 
-("Driver", 25000, 01),
-("Artist", 48000, 02),
-("Dancer", 12000, 02),
-("Boxer", 80000, 03);
+("Driver", 25000, 1),
+("Artist", 48000, 2),
+("Dancer", 12000, 2),
+("Boxer", 80000, 3);
 
 INSERT INTO department (department_name)
 VALUES
