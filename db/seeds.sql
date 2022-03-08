@@ -6,7 +6,7 @@ VALUES
 ('Montague', 'Summers', 1, 1),
 ('Ducky', 'Wack', 8, 5);
 
-INSERT INTO role (role_name, salery, department_id)
+INSERT INTO role (role_name, salary, department_id)
 VALUES 
 ("Driver", 25000, 1),
 ("Artist", 48000, 2),

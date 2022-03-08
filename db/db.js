@@ -2,7 +2,7 @@ const db = require('./connection.js');
 
 function selectAllEmployees() {
     const sql = `
-    SELECT employee.employee_id, employee.first_name, employee.last_name, role.role_name, role.salery, department.department_name, employee.manager_id 
+    SELECT employee.employee_id, employee.first_name, employee.last_name, role.role_name, role.salary, department.department_name, employee.manager_id 
     FROM employee
     INNER JOIN role 
     ON employee.role_id = role.id
@@ -21,7 +21,12 @@ function selectAllEmployees() {
 }
 
 function selectAllRoles() {
-    const sql = `SELECT * FROM role`;
+    const sql = `
+    SELECT role.id_role, role.role_name, role.salary, department.department_name
+    FROM role
+    INNER JOIN department 
+    ON role.department_id = department.id;
+    `;
     db.query(sql, (err, rows) => {
         if (err) {
             console.log("error occured!", err)
@@ -46,6 +51,10 @@ function selectAllDepartments() {
 function updateEmployee(id, roleID) {
     const sql = `UPDATE employee SET role_id = ${roleID} WHERE id = ${id}`;
     const lookUp = `SELECT * FROM employee WHERE id = LAST_INSERT_ID()`
+
+    // UPDATE employee
+    // SET username = "Lernantino", email = "lernantino@gmail.com", password = "newPassword1234"
+    // WHERE id = 1;
 
     db.query(sql, (err, rows) => {
         if (err) {
@@ -84,7 +93,7 @@ function addEmployee(employee) {
 }
 
 function addRole(role) {
-    const sql = `INSERT INTO role (role_name, salery, department_id) VALUES ('${role.title}', '${role.roleSalery}' , ${role.roleDep})`;
+    const sql = `INSERT INTO role (role_name, salary, department_id) VALUES ('${role.title}', '${role.rolesalary}' , ${role.roleDep})`;
     const lookUp = `SELECT * FROM role WHERE id = LAST_INSERT_ID()`
     db.query(sql, (err, rows) => {
         if (err) {
