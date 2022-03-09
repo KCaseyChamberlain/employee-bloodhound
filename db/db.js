@@ -48,14 +48,13 @@ function selectAllDepartments() {
     });
 }
 
-
-function updateEmployee(id, roleID) {
-    const sql = `UPDATE employee SET role_id = ${roleID} WHERE id = ${id}`;
-    const lookUp = `SELECT * FROM employee WHERE id = LAST_INSERT_ID()`
-
-    // UPDATE employee
-    // SET username = "Lernantino", email = "lernantino@gmail.com", password = "newPassword1234"
-    // WHERE id = 1;
+function updateEmployee(employee) {
+    const sql = `
+    UPDATE employee
+    SET role_id = ${employee.updateNewRoleId} 
+    WHERE employee_id = ${employee.updateId}
+    `;
+    const lookUp = `SELECT * FROM employee WHERE employee_id = ${employee.updateId}`
 
     db.query(sql, (err, rows) => {
         if (err) {
@@ -140,5 +139,6 @@ module.exports = {
     selectAllDepartments,
     addEmployee,
     addRole,
-    addDepartment
+    addDepartment,
+    updateEmployee
 }

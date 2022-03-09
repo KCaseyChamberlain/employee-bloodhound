@@ -39,21 +39,25 @@ function starterQuestions() {
                 case 'Add a department':
                     addDepartmentQuestions()
                     break;
+                
+                case 'Update an employee role':
+                    updateEmployeeRoleQuestions()
+                    break;
 
                 default:
                     console.log("Selection invalid!")
             }
-            readLine.emitKeypressEvents(process.stdin)
-            process.stdin.setRawMode(true)
-            process.stdin.resume()
-            process.stdin.once('keypress', (str, key) => {
-                if (key.ctrl && key.name === 'c') {
-                    process.exit();
-                }
-                process.stdin.setRawMode(false)
-                console.clear()
-                starterQuestions()
-            })
+            // readLine.emitKeypressEvents(process.stdin)
+            // process.stdin.setRawMode(true)
+            // process.stdin.resume()
+            // process.stdin.once('keypress', (str, key) => {
+            //     if (key.ctrl && key.name === 'c') {
+            //         process.exit();
+            //     }
+            //     process.stdin.setRawMode(false)
+            //     console.clear()
+            //     starterQuestions()
+            // })
         })
 }
 
@@ -84,7 +88,14 @@ function addDepartmentQuestions() {
         })
 }
 
-
+function updateEmployeeRoleQuestions() {
+    inquirer
+        .prompt(questions.updateQuestions)
+        .then(function (answers) {
+            var employee = new dataModel.UPEmployee(answers.updateId, answers.updateNewRoleId)
+            dataManager.updateEmployee(employee)
+        })
+}
 
 // starts application
 starterQuestions()

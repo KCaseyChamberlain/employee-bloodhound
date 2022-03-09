@@ -4,18 +4,22 @@ VALUES
 ('Virginia', 'Woolf', 3, 1),
 ('Charles', 'LeRoi', 2, 3),
 ('Montague', 'Summers', 1, 1),
-('Ducky', 'Wack', 8, 5);
+('Ducky', 'Wack', 5, 5);
 
 INSERT INTO role (role_name, salary, department_id)
 VALUES 
 ("Driver", 25000, 1),
 ("Artist", 48000, 2),
 ("Dancer", 12000, 2),
-("Boxer", 80000, 3);
+("Boxer", 80000, 6),
+("Dog Walker", 15555, 6),
+("Lawn Mower", 30000, 3);
 
 INSERT INTO department (department_name)
 VALUES
 ("Transportation"),
 ("Fine Arts"),
-("Fighter"),
-("Blue Collar");
+("Landscaping"),
+("Shipping"),
+("Construction"),
+("Fitness");
