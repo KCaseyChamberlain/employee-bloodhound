@@ -17,4 +17,5 @@ INSERT INTO department (department_name)
 VALUES
 ("Transportation"),
 ("Fine Arts"),
+("Fighter"),
 ("Blue Collar");

@@ -68,7 +68,7 @@ function addEmployeeQuestions() {
 
 function addRoleQuestions() {
     inquirer
-        .prompt(questions.roleQuestions)
+        .prompt(questions.roleQuestions)  
         .then(function (answers) {
             var role = new dataModel.Role(answers.roleName, answers.roleSalary, answers.roleDepID)
             dataManager.addRole(role)

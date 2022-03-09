@@ -1,11 +1,12 @@
 const db = require('./connection.js');
+const cTable = require ('console.table');
 
 function selectAllEmployees() {
     const sql = `
     SELECT employee.employee_id, employee.first_name, employee.last_name, role.role_name, role.salary, department.department_name, employee.manager_id 
     FROM employee
     INNER JOIN role 
-    ON employee.role_id = role.id
+    ON employee.role_id = role.id_role
     INNER JOIN department
     ON role.department_id = department.id;
 `;
