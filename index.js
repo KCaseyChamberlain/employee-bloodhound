@@ -10,7 +10,7 @@ db.connect(err => {
     console.log('\n', 'Database connected.');
 });
 
-// the starter questions will loop through the "view table" questions. add/update questions use process.exit(1) to exit the app and give the user a stopping point.
+// the starter questions will loop the "view table" choices. add/update choices use process.exit(1) to exit the app and give the user a stopping point.
 function starterQuestions() {
     inquirer
         .prompt(questions.starterQuestion)
@@ -53,7 +53,7 @@ function starterQuestions() {
         })
 }
 
-// these 4 functions prompt an array of questions based on the user's input. question's answers are then used in the employee/role/department models.
+// these 4 functions prompt an array of questions based on the user's choices in starterQuestions(). question's answers are then used in the employee/role/department models.
 function addEmployeeQuestions() {
     inquirer
         .prompt(questions.employeeQuestions)

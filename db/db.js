@@ -74,6 +74,7 @@ function updateEmployee(employee) {
             console.clear()
             console.log("Employee has been updated!")
             console.table(rows)
+            process.exit(1)
         });
     });
 }
