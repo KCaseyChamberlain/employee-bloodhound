@@ -3,8 +3,6 @@ const db = require('./db/connection.js');
 const questions = require('./lib/questions.js');
 const dataManager = require("./db/db.js")
 const dataModel = require("./lib/models.js")
-const readLine = require('readline');
-const { rawListeners } = require('process');
 
 db.connect(err => {
     if (err) throw err;
@@ -18,46 +16,42 @@ function starterQuestions() {
             switch (answers.starterQ) {
                 case 'View all employees':
                     dataManager.selectAllEmployees();
+                        starterQuestions()
                     break;
 
                 case 'View all roles':
                     dataManager.selectAllRoles();
+                    starterQuestions()
                     break;
 
                 case 'View all departments':
                     dataManager.selectAllDepartments();
+                    starterQuestions()
                     break;
 
                 case 'Add an employee':
-                    addEmployeeQuestions()
+                    addEmployeeQuestions();
+                    await.starterQuestions()
                     break;
 
                 case 'Add a role':
                     addRoleQuestions()
+                    // starterQuestions();
                     break;
 
                 case 'Add a department':
-                    addDepartmentQuestions()
+                    addDepartmentQuestions();
+                    // starterQuestions()
                     break;
                 
                 case 'Update an employee role':
-                    updateEmployeeRoleQuestions()
+                    updateEmployeeRoleQuestions();
+                    // starterQuestions()
                     break;
 
                 default:
                     console.log("Selection invalid!")
             }
-            // readLine.emitKeypressEvents(process.stdin)
-            // process.stdin.setRawMode(true)
-            // process.stdin.resume()
-            // process.stdin.once('keypress', (str, key) => {
-            //     if (key.ctrl && key.name === 'c') {
-            //         process.exit();
-            //     }
-            //     process.stdin.setRawMode(false)
-            //     console.clear()
-            //     starterQuestions()
-            // })
         })
 }
 
@@ -99,4 +93,3 @@ function updateEmployeeRoleQuestions() {
 
 // starts application
 starterQuestions()
-

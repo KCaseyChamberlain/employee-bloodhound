@@ -1,5 +1,6 @@
 const db = require('./connection.js');
 const cTable = require ('console.table');
+const { starterQuestions } = require('../lib/questions.js');
 
 function selectAllEmployees() {
     const sql = `
@@ -16,7 +17,7 @@ function selectAllEmployees() {
             console.log("error occured!", err)
             return;
         }
-        // console.clear()
+        console.clear()
         console.table(rows)
     });
 }
@@ -33,6 +34,7 @@ function selectAllRoles() {
             console.log("error occured!", err)
             return;
         }
+        console.clear()
         console.table(rows)
     });
 }
@@ -44,6 +46,7 @@ function selectAllDepartments() {
             console.log("error occured!", err)
             return;
         }
+        console.clear()
         console.table(rows)
     });
 }
@@ -66,6 +69,7 @@ function updateEmployee(employee) {
                 console.log("error occured!", err)
                 return;
             }
+            console.clear()
             console.log("Employee has been updated!")
             console.table(rows)
         });
@@ -74,7 +78,7 @@ function updateEmployee(employee) {
 
 function addEmployee(employee) {
     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${employee.firstName}', '${employee.lastName}' , ${employee.roleID}, ${employee.managerID})`;
-    const lookUp = `SELECT * FROM employee WHERE id = LAST_INSERT_ID()`
+    const lookUp = `SELECT * FROM employee WHERE employee_id = LAST_INSERT_ID()`
     db.query(sql, (err, rows) => {
         if (err) {
             console.log("error occured!", err)
@@ -86,6 +90,7 @@ function addEmployee(employee) {
                 console.log("error occured!", err)
                 return;
             }
+            console.clear()
             console.log("Employee has been added!")
             console.table(rows)
         });
@@ -94,7 +99,7 @@ function addEmployee(employee) {
 
 function addRole(role) {
     const sql = `INSERT INTO role (role_name, salary, department_id) VALUES ('${role.title}', '${role.rolesalary}' , ${role.roleDep})`;
-    const lookUp = `SELECT * FROM role WHERE id = LAST_INSERT_ID()`
+    const lookUp = `SELECT * FROM role WHERE id_role = LAST_INSERT_ID()`
     db.query(sql, (err, rows) => {
         if (err) {
             console.log("error occured!", err)
@@ -106,6 +111,7 @@ function addRole(role) {
                 console.log("error occured!", err)
                 return;
             }
+            console.clear()
             console.log("Role has been added!")
             console.table(rows)
         });
@@ -126,6 +132,7 @@ function addDepartment(department) {
                 console.log("error occured!", err)
                 return;
             }
+            console.clear()
             console.log("Department has been added!")
             console.table(rows)
         });
