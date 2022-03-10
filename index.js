@@ -1,8 +1,9 @@
 const inquirer = require('inquirer');
 const db = require('./db/connection.js');
 const questions = require('./lib/questions.js');
-const dataManager = require("./db/db.js")
-const dataModel = require("./lib/models.js")
+const dataManager = require("./db/db.js");
+const dataModel = require("./lib/models.js");
+
 
 db.connect(err => {
     if (err) throw err;
@@ -30,8 +31,7 @@ function starterQuestions() {
                     break;
 
                 case 'Add an employee':
-                    addEmployeeQuestions();
-                    // await.starterQuestions()
+                    addEmployeeQuestions()
                     break;
 
                 case 'Add a role':
@@ -94,4 +94,4 @@ function updateEmployeeRoleQuestions() {
 // starts application
 starterQuestions()
 
-module.exports = { starterQuestions }
+module.exports = {starterQuestions}
