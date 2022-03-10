@@ -1,6 +1,7 @@
 const db = require('./connection.js');
 const cTable = require ('console.table');
-const { starterQuestions } = require('../lib/questions.js');
+const { starterQuestion } = require('../lib/questions.js');
+const {starterQuestions} = require('../index.js')
 
 function selectAllEmployees() {
     const sql = `
@@ -93,6 +94,7 @@ function addEmployee(employee) {
             console.clear()
             console.log("Employee has been added!")
             console.table(rows)
+            starterQuestions();
         });
     });
 }

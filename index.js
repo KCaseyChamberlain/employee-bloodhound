@@ -31,7 +31,7 @@ function starterQuestions() {
 
                 case 'Add an employee':
                     addEmployeeQuestions();
-                    await.starterQuestions()
+                    // await.starterQuestions()
                     break;
 
                 case 'Add a role':
@@ -93,3 +93,5 @@ function updateEmployeeRoleQuestions() {
 
 // starts application
 starterQuestions()
+
+module.exports = { starterQuestions }
