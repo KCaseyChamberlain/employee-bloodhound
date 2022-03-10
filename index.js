@@ -1,15 +1,16 @@
 const inquirer = require('inquirer');
 const db = require('./db/connection.js');
 const questions = require('./lib/questions.js');
-const dataManager = require("./db/db.js");
-const dataModel = require("./lib/models.js");
+const dataManager = require("./db/db.js")
+const dataModel = require("./lib/models.js")
 
-
+// confirms that the database is functional
 db.connect(err => {
     if (err) throw err;
     console.log('\n', 'Database connected.');
 });
 
+// the starter questions will loop through the "view table" questions. add/update questions use process.exit(1) to exit the app and give the user a stopping point.
 function starterQuestions() {
     inquirer
         .prompt(questions.starterQuestion)
@@ -36,17 +37,14 @@ function starterQuestions() {
 
                 case 'Add a role':
                     addRoleQuestions()
-                    // starterQuestions();
                     break;
 
                 case 'Add a department':
-                    addDepartmentQuestions();
-                    // starterQuestions()
+                    addDepartmentQuestions()
                     break;
                 
                 case 'Update an employee role':
-                    updateEmployeeRoleQuestions();
-                    // starterQuestions()
+                    updateEmployeeRoleQuestions()
                     break;
 
                 default:
@@ -55,6 +53,7 @@ function starterQuestions() {
         })
 }
 
+// these 4 functions prompt an array of questions based on the user's input. question's answers are then used in the employee/role/department models.
 function addEmployeeQuestions() {
     inquirer
         .prompt(questions.employeeQuestions)
@@ -93,5 +92,3 @@ function updateEmployeeRoleQuestions() {
 
 // starts application
 starterQuestions()
-
-module.exports = {starterQuestions}

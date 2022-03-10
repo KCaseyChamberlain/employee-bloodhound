@@ -1,8 +1,7 @@
 const db = require('./connection.js');
 const cTable = require ('console.table');
-const starterQuestions = require('../index.js')
 
-
+// selects the employee table. joins with role name department name
 function selectAllEmployees() {
     const sql = `
     SELECT employee.employee_id, employee.first_name, employee.last_name, role.role_name, role.salary, department.department_name, employee.manager_id 
@@ -12,7 +11,6 @@ function selectAllEmployees() {
     INNER JOIN department
     ON role.department_id = department.id;
 `;
-
     db.query(sql, (err, rows) => {
         if (err) {
             console.log("error occured!", err)
@@ -23,6 +21,7 @@ function selectAllEmployees() {
     });
 }
 
+// selects role table. joins with department name.
 function selectAllRoles() {
     const sql = `
     SELECT role.id_role, role.role_name, role.salary, department.department_name
@@ -40,6 +39,7 @@ function selectAllRoles() {
     });
 }
 
+// selects the whole department table
 function selectAllDepartments() {
     const sql = `SELECT * FROM department`;
     db.query(sql, (err, rows) => {
@@ -52,6 +52,7 @@ function selectAllDepartments() {
     });
 }
 
+// updates employee role using the employee id. dynamically does this using the model.
 function updateEmployee(employee) {
     const sql = `
     UPDATE employee
@@ -77,6 +78,7 @@ function updateEmployee(employee) {
     });
 }
 
+// adds new employee to employee table using the employee model. consoles the table using the last inserted employee_id.
 function addEmployee(employee) {
     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${employee.firstName}', '${employee.lastName}' , ${employee.roleID}, ${employee.managerID})`;
     const lookUp = `SELECT * FROM employee WHERE employee_id = LAST_INSERT_ID()`
@@ -94,11 +96,12 @@ function addEmployee(employee) {
             console.clear()
             console.log("Employee has been added!")
             console.table(rows)
-            starterQuestions()
+            process.exit(1)
         });
     });
 }
 
+// adds role to role table. consoles using the last inserted id_role.
 function addRole(role) {
     const sql = `INSERT INTO role (role_name, salary, department_id) VALUES ('${role.title}', '${role.rolesalary}' , ${role.roleDep})`;
     const lookUp = `SELECT * FROM role WHERE id_role = LAST_INSERT_ID()`
@@ -116,10 +119,12 @@ function addRole(role) {
             console.clear()
             console.log("Role has been added!")
             console.table(rows)
+            process.exit(1)
         });
     });
 }
 
+// adds department to department table. consoles the department using the last inserted id.
 function addDepartment(department) {
     const sql = `INSERT INTO department (department_name) VALUES ('${department.depName}')`;
     const lookUp = `SELECT * FROM department WHERE id = LAST_INSERT_ID()`
@@ -137,11 +142,12 @@ function addDepartment(department) {
             console.clear()
             console.log("Department has been added!")
             console.table(rows)
+            process.exit(1)
         });
     });
 }
 
-
+// exporting functions
 module.exports = {
     selectAllEmployees,
     selectAllRoles,
